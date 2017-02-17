@@ -22,14 +22,14 @@ public class TweeterController {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	@GetMapping("timelines")
+	@GetMapping("v1/timelines")
 	List<Tweet> getTimelines() {
 		return jdbcTemplate.query(
 				"SELECT tweet_id, text, username, created_at FROM tweets ORDER BY created_at DESC",
 				tweetRowMapper);
 	}
 
-	@GetMapping("tweets")
+	@GetMapping("v1/tweets")
 	List<Tweet> tweets(Authentication authentication) {
 		String username = authentication.getName();
 		return jdbcTemplate.query(
@@ -37,7 +37,7 @@ public class TweeterController {
 				tweetRowMapper, username);
 	}
 
-	@PostMapping("tweets")
+	@PostMapping("v1/tweets")
 	Tweet postTweets(@RequestBody Tweet tweet, Authentication authentication) {
 		tweet.tweetId = UUID.randomUUID();
 		tweet.createdAt = new Date();
