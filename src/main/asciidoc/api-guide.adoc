@@ -1,0 +1,44 @@
+= Tweeter API Guide
+Toshiaki Maki(@making);
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+
+[[resources]]
+= Resources
+
+
+[[resources-tweets]]
+== Tweets
+
+The Tweets resources is used to create and list tweets
+
+[[resources-get-tweets]]
+=== Listing tweets
+
+A `GET` request will list all of the user's tweets.
+
+operation::api/get-tweets[]
+
+[[resources-post-tweets]]
+=== Creating a tweet
+
+A `POST` request is used to create a tweet
+
+operation::api/post-tweets[]
+
+[[resources-timelines]]
+== Timelines
+
+The Timelines resources is used to list timeline
+
+[[resources-get-tweets]]
+=== Listing timelines
+
+A `GET` request will list all tweets you are following.
+
+operation::api/get-timelines[]
