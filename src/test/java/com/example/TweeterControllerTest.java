@@ -18,10 +18,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcConfigurationCustomizer;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.MockMvcRestDocumentationConfigurer;
+import org.springframework.restdocs.templates.TemplateFormats;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.Base64Utils;
@@ -156,4 +160,14 @@ public class TweeterControllerTest {
 										.description("The date of this tweet"))));
 	}
 
+	@TestConfiguration
+	static class CustomizationConfiguration
+			implements RestDocsMockMvcConfigurationCustomizer {
+
+		@Override
+		public void customize(MockMvcRestDocumentationConfigurer configurer) {
+			configurer.snippets().withTemplateFormat(TemplateFormats.markdown());
+		}
+
+	}
 }

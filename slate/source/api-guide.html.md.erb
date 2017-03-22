@@ -1,0 +1,97 @@
+---
+title: Tweeter API Guide
+
+language_tabs:
+  - http
+
+search: true
+
+search: true
+---
+
+
+# Resources
+
+## Tweets
+
+The Tweets resources is used to create and list tweets
+
+### Listing tweets
+
+A `GET` request will list all of the user's tweets.
+
+#### Response structure
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/response-fields.md")).result(binding) %>
+
+#### Example request
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/http-request.md")).result(binding) %>
+
+##### curl
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/curl-request.md")).result(binding) %>
+
+##### httpie
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/httpie-request.md")).result(binding) %>
+
+#### Example response
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/http-response.md")).result(binding) %>
+
+### Creating a tweet
+
+A `POST` request is used to create a tweet
+
+#### Request structure
+
+<%= ERB.new(File.read("../target/generated-snippets/api/post-tweets/request-fields.md")).result(binding) %>
+
+#### Response structure
+
+<%= ERB.new(File.read("../target/generated-snippets/api/post-tweets/response-fields.md")).result(binding) %>
+
+#### Example request
+
+<%= ERB.new(File.read("../target/generated-snippets/api/post-tweets/http-request.md")).result(binding) %>
+
+##### curl
+
+<%= ERB.new(File.read("../target/generated-snippets/api/post-tweets/curl-request.md")).result(binding) %>
+
+##### httpie
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/httpie-request.md")).result(binding) %>
+
+#### Example response
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-tweets/http-response.md")).result(binding) %>
+
+## Timelines
+
+The Timelines resources is used to list timeline
+
+### Listing timelines
+
+A `GET` request will list all tweets you are following.
+
+#### Response structure
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-timelines/response-fields.md")).result(binding) %>
+
+#### Example request
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-timelines/http-request.md")).result(binding) %>
+
+##### curl
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-timelines/curl-request.md")).result(binding) %>
+
+##### httpie
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-timelines/httpie-request.md")).result(binding) %>
+
+#### Example response
+
+<%= ERB.new(File.read("../target/generated-snippets/api/get-timelines/http-response.md")).result(binding) %>
