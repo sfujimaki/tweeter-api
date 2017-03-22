@@ -2,6 +2,8 @@ package com.example;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -15,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TweeterController.class)
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets", uriScheme = "https", uriHost = "api.example.com", uriPort = 443)
 public class TweeterControllerTest {
 	@Autowired
 	MockMvc mvc;
@@ -71,7 +75,14 @@ public class TweeterControllerTest {
 						is("00000000-0000-0000-0000-000000000003")))
 				.andExpect(jsonPath("$[3].text", is("tweet4")))
 				.andExpect(jsonPath("$[3].username", is("user")))
-				.andExpect(jsonPath("$[3].createdAt", notNullValue()));
+				.andExpect(jsonPath("$[3].createdAt", notNullValue()))
+				.andDo(document("api/get-timelines", responseFields(
+						fieldWithPath("[].tweetId").description("The ID of this tweet"),
+						fieldWithPath("[].text").description("The text of this tweet"),
+						fieldWithPath("[].username")
+								.description("Owner's username of this tweet"),
+						fieldWithPath("[].createdAt")
+								.description("The date of this tweet"))));
 	}
 
 	@Test
@@ -101,7 +112,14 @@ public class TweeterControllerTest {
 						is("00000000-0000-0000-0000-000000000003")))
 				.andExpect(jsonPath("$[2].text", is("tweet4")))
 				.andExpect(jsonPath("$[2].username", is("user")))
-				.andExpect(jsonPath("$[2].createdAt", notNullValue()));
+				.andExpect(jsonPath("$[2].createdAt", notNullValue()))
+				.andDo(document("api/get-tweets", responseFields(
+						fieldWithPath("[].tweetId").description("The ID of this tweet"),
+						fieldWithPath("[].text").description("The text of this tweet"),
+						fieldWithPath("[].username")
+								.description("Owner's username of this tweet"),
+						fieldWithPath("[].createdAt")
+								.description("The date of this tweet"))));
 	}
 
 	@Test
@@ -123,7 +141,19 @@ public class TweeterControllerTest {
 						jsonPath("$.tweetId", is("00000000-0000-0000-0000-000000000000")))
 				.andExpect(jsonPath("$.text", is("tweet1")))
 				.andExpect(jsonPath("$.username", is("user")))
-				.andExpect(jsonPath("$.createdAt", notNullValue()));
+				.andExpect(jsonPath("$.createdAt", notNullValue()))
+				.andDo(document("api/post-tweets",
+						requestFields(fieldWithPath("text")
+								.description("The text of this tweet")),
+						responseFields(
+								fieldWithPath("tweetId")
+										.description("The ID of this tweet"),
+								fieldWithPath("text")
+										.description("The text of this tweet"),
+								fieldWithPath("username")
+										.description("Owner's username of this tweet"),
+								fieldWithPath("createdAt")
+										.description("The date of this tweet"))));
 	}
 
 }
