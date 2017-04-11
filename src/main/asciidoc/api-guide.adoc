@@ -22,54 +22,14 @@ The Tweets resources is used to create and list tweets
 
 A `GET` request will list all of the user's tweets.
 
-==== Response structure
-
-include::{snippets}/api/get-tweets/response-fields.adoc[]
-
-==== Example request
-
-include::{snippets}/api/get-tweets/http-request.adoc[]
-
-curl
-
-include::{snippets}/api/get-tweets/curl-request.adoc[]
-
-httpie
-
-include::{snippets}/api/get-tweets/httpie-request.adoc[]
-
-==== Example response
-
-include::{snippets}/api/get-tweets/http-response.adoc[]
+operation::api/get-tweets[]
 
 [[resources-post-tweets]]
 === Creating a tweet
 
 A `POST` request is used to create a tweet
 
-==== Request structure
-
-include::{snippets}/api/post-tweets/request-fields.adoc[]
-
-==== Response structure
-
-include::{snippets}/api/post-tweets/response-fields.adoc[]
-
-==== Example request
-
-include::{snippets}/api/post-tweets/http-request.adoc[]
-
-curl
-
-include::{snippets}/api/post-tweets/curl-request.adoc[]
-
-httpie
-
-include::{snippets}/api/post-tweets/httpie-request.adoc[]
-
-==== Example response
-
-include::{snippets}/api/post-tweets/http-response.adoc[]
+operation::api/post-tweets[]
 
 [[resources-timelines]]
 == Timelines
@@ -81,23 +41,4 @@ The Timelines resources is used to list timeline
 
 A `GET` request will list all tweets you are following.
 
-==== Response structure
-
-include::{snippets}/api/get-timelines/response-fields.adoc[]
-
-
-==== Example request
-
-include::{snippets}/api/get-timelines/http-request.adoc[]
-
-curl
-
-include::{snippets}/api/get-timelines/curl-request.adoc[]
-
-httpie
-
-include::{snippets}/api/get-timelines/httpie-request.adoc[]
-
-==== Example response
-
-include::{snippets}/api/get-timelines/http-response.adoc[]
+operation::api/get-timelines[]
