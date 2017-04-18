@@ -22,8 +22,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud-contract.version>1.1.0.RC1</spring-cloud-contract.version>
+		<spring-cloud-contract.version>1.1.1.BUILD-SNAPSHOT</spring-cloud-contract.version>
 		<spring.cloud.contract.verifier.http.port>8082</spring.cloud.contract.verifier.http.port>
+		<rest.assured-version>3.0.2</rest.assured-version>
 	</properties>
 
 	<dependencies>
@@ -47,7 +48,13 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
-			<version>3.0.2</version>
+			<version>${rest.assured-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>spring-mock-mvc</artifactId>
+			<version>${rest.assured-version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -63,6 +70,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.jayway.restassured</groupId>
+					<artifactId>spring-mock-mvc</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -71,7 +84,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Dalston.RC1</version>
+				<version>Dalston.BUILD-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -93,6 +106,31 @@
 					<packageWithBaseClasses>com.example.contract</packageWithBaseClasses>
 					<testMode>EXPLICIT</testMode>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework.cloud</groupId>
+						<artifactId>spring-cloud-contract-verifier</artifactId>
+						<version>${spring-cloud-contract.version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>com.jayway.restassured</groupId>
+								<artifactId>spring-mock-mvc</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>io.rest-assured</groupId>
+						<artifactId>rest-assured</artifactId>
+						<version>${rest.assured-version}</version>
+						<scope>compile</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.rest-assured</groupId>
+						<artifactId>spring-mock-mvc</artifactId>
+						<version>${rest.assured-version}</version>
+						<scope>compile</scope>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

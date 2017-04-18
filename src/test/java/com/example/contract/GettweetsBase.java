@@ -11,7 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.example.Fixtures;
 import com.example.TweeterApiApplication;
 import com.example.TweeterMapper;
-import com.jayway.restassured.RestAssured;
+
+import io.restassured.RestAssured;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TweeterApiApplication.class)
