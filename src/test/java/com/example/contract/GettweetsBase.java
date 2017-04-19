@@ -28,5 +28,7 @@ public abstract class GettweetsBase {
 		BDDMockito.given(tweeterMapper.findAll()).willReturn(Fixtures.tweetsAll());
 		BDDMockito.given(tweeterMapper.findByUsername("user"))
 				.willReturn(Fixtures.tweetsByUsername("user"));
+		BDDMockito.given(tweeterMapper.findByUsername("foo"))
+				.willReturn(Fixtures.tweetsByUsername("foo"));
 	}
 }
