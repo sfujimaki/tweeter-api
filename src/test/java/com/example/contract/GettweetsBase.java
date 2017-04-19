@@ -26,5 +26,7 @@ public abstract class GettweetsBase {
 	public void setup() {
 		RestAssured.port = port;
 		BDDMockito.given(tweeterMapper.findAll()).willReturn(Fixtures.tweetsAll());
+		BDDMockito.given(tweeterMapper.findByUsername("user"))
+				.willReturn(Fixtures.tweetsByUsername("user"));
 	}
 }
