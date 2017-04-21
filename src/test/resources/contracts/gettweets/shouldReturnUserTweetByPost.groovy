@@ -12,9 +12,9 @@ Contract.make {
         body (["text":"tweet1"])
     }
     response {
-        status 200
+        status 201
         body([
-            tweetId  : '00000000-0000-0000-0000-000000000000',
+            tweetId  : $(regex('[0-9]{8}-[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{12}')),
             text     : 'tweet1',
             username : 'user',
             createdAt: $(client('2017-04-12T01:09:05Z'), server(regex('[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z')))
